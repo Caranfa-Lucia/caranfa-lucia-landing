@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, Linkedin, Github, ExternalLink, Code, User, MapPin, Calendar, Award, Briefcase, GraduationCap, Laptop, Globe } from 'lucide-react';
+import profileImage from './assets/caranfa-lucia.jpeg';
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -162,7 +163,7 @@ const LandingPage = () => {
                 <div className="text-center">
                   <div className="w-32 h-32 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-full mx-auto mb-6 flex items-center justify-center">
                     {/* <User size={48} className="text-white" /> */}
-                    <img src="/src/assets/caranfa-lucia.jpeg" alt="profile image" className="w-32 h-32 rounded-full" />
+                    <img src={profileImage} alt="profile image" className="w-32 h-32 rounded-full" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">Lucía Paula Denise Caranfa</h3>
                   <p className="text-teal-200 mb-4">Web Responsive Developer</p>
