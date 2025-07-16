@@ -95,7 +95,7 @@ const LandingPage = () => {
               Caranfa Lucía Paula Denise
             </div>
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'experience', 'education', 'projects', 'contact'].map((section) => (
+              {['home', 'about', 'experience', 'highlights', 'education', 'projects', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -105,8 +105,9 @@ const LandingPage = () => {
                   {section === 'home' ? 'Inicio' :
                     section === 'about' ? 'Sobre mí' :
                       section === 'experience' ? 'Experiencia' :
-                        section === 'education' ? 'Educación' :
-                          section === 'projects' ? 'Proyectos' : 'Contacto'}
+                        section === 'highlights' ? 'Destacados' :
+                          section === 'education' ? 'Educación' :
+                            section === 'projects' ? 'Proyectos' : 'Contacto'}
                 </button>
               ))}
             </div>
@@ -201,8 +202,8 @@ const LandingPage = () => {
               <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
                 <h3 className="text-2xl font-bold text-white mb-4">Objetivos</h3>
                 <p className="text-teal-200">
-                  Estoy centrada en seguir explorando mi carrera como desarrolladora, profundizar mis conocimientos en React, 
-                  apuntando a próximos pasos en React Native, y la implementación de IA en mis proyectos. 
+                  Estoy centrada en seguir explorando mi carrera como desarrolladora, profundizar mis conocimientos en React,
+                  apuntando a próximos pasos en React Native, y la implementación de IA en mis proyectos.
                   Aspiro a perfeccionar la optimización y eficiencia del código para brindar productos de mayor calidad.
                 </p>
               </div>
@@ -279,7 +280,7 @@ const LandingPage = () => {
       </section>
 
       {/* Achievement & Language Section */}
-      <section className="py-20 bg-gradient-to-r from-yellow-500/10 to-orange-500/10">
+      <section id="highlights" className="py-20 bg-gradient-to-r from-yellow-500/10 to-orange-500/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Destacados</h2>
@@ -307,8 +308,8 @@ const LandingPage = () => {
               </div>
               <h3 className="text-2xl font-bold text-white mb-6">Inglés Avanzado</h3>
               <p className="text-xl text-teal-200 leading-relaxed mb-6">
-                Nivel C1 en lectura y escritura, B2 en habla.<br/>
-                <a href="https://cert.efset.org/BSaeYx" target="_blank" rel="noopener noreferrer" className="text-cyan-300 underline hover:text-cyan-400 transition">Certificado EFSET English Certificate 66/100 (C1 Advanced)</a>.<br/>
+                Nivel C1 en lectura y escritura, B2 en habla.<br />
+                <a href="https://cert.efset.org/BSaeYx" target="_blank" rel="noopener noreferrer" className="text-cyan-300 underline hover:text-cyan-400 transition">Certificado EFSET English Certificate 66/100 (C1 Advanced)</a>.<br />
                 Certificado English Discoveries - Intermediate 1.
               </p>
               <div className="flex justify-center">
@@ -345,8 +346,8 @@ const LandingPage = () => {
                         <span>{edu.period}</span>
                       </div>
                       <span className={`px-3 py-1 rounded-full text-xs ${edu.status === 'En curso'
-                          ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-400/30'
-                          : 'bg-green-500/20 text-green-300 border border-green-400/30'
+                        ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-400/30'
+                        : 'bg-green-500/20 text-green-300 border border-green-400/30'
                         }`}>
                         {edu.status}
                       </span>
