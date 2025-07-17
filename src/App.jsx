@@ -1,25 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, Linkedin, Github, ExternalLink, Code, User, MapPin, Calendar, Award, Briefcase, GraduationCap, Laptop, Globe } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, ExternalLink, Code, User, MapPin, Calendar, Award, Briefcase, GraduationCap, Laptop, Globe, Menu, X } from 'lucide-react';
 import profileImage from './assets/caranfa-lucia.jpeg';
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      // Cerrar menú móvil al hacer scroll
+      if (isMobileMenuOpen) {
+        console.log('Cerrando menú por scroll');
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    const handleClickOutside = (event) => {
+      // Solo cerrar si el menú está abierto y el clic no fue dentro del nav
+      if (isMobileMenuOpen && !event.target.closest('nav')) {
+        console.log('Cerrando menú por clic fuera');
+        setIsMobileMenuOpen(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Debug: Monitorear cambios en isMobileMenuOpen
+  useEffect(() => {
+    console.log('isMobileMenuOpen cambió a:', isMobileMenuOpen);
+  }, [isMobileMenuOpen]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(sectionId);
+      setIsMobileMenuOpen(false); // Cerrar menú móvil al hacer clic
     }
   };
 
@@ -87,89 +112,132 @@ const LandingPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-cyan-900 via-teal-900 to-blue-800">
 
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/10 backdrop-blur-lg' : 'bg-transparent'
-        }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/10 backdrop-blur-lg' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
+            {/* Logo */}
+            <div className="text-xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
               Caranfa Lucía Paula Denise
             </div>
+
+            {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'experience', 'highlights', 'education', 'projects', 'contact'].map((section) => (
+              {['home', 'about', 'experience', 'highlights', 'education', 'certifications', 'projects', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`capitalize transition-colors duration-200 hover:text-cyan-400 ${activeSection === section ? 'text-cyan-400' : 'text-white'
-                    }`}
+                  className={`capitalize text-lg transition-colors duration-200 hover:text-cyan-400 ${activeSection === section ? 'text-cyan-400' : 'text-white'}`}
                 >
                   {section === 'home' ? 'Inicio' :
                     section === 'about' ? 'Sobre mí' :
                       section === 'experience' ? 'Experiencia' :
                         section === 'highlights' ? 'Destacados' :
                           section === 'education' ? 'Educación' :
+                          section === 'certifications' ? 'Certificaciones' :
                             section === 'projects' ? 'Proyectos' : 'Contacto'}
                 </button>
               ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                const newValue = !isMobileMenuOpen;
+                console.log('Estado anterior:', isMobileMenuOpen, 'Nuevo estado:', newValue);
+                setIsMobileMenuOpen(newValue);
+              }}
+              className="md:hidden p-2 rounded-lg  text-white transition-all duration-200"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden right-0 top-full z-50 backdrop-blur-lg rounded-2xl mt-4 p-4 shadow-2xl w-100" style={{ marginBottom: '10px' }}>
+              <div className="flex flex-col space-y-2">
+                {['home', 'about', 'experience', 'highlights', 'education', 'certifications', 'projects', 'contact'].map((section) => (
+                  <button
+                    key={section}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      scrollToSection(section);
+                    }}
+                    className={`text-left px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/10 text-lg ${activeSection === section
+                      ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-400/30'
+                      : 'text-white hover:text-cyan-400'
+                      }`}
+                  >
+                    {section === 'home' ? 'Inicio' :
+                      section === 'about' ? 'Sobre mí' :
+                        section === 'experience' ? 'Experiencia' :
+                          section === 'highlights' ? 'Destacados' :
+                            section === 'education' ? 'Educación' :
+                              section === 'certifications' ? 'Certificaciones' :
+                                section === 'projects' ? 'Proyectos' : 'Contacto'}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
         <div className="absolute inset-0 bg-gradient-to-r from-teal-800/20 to-cyan-800/20"></div>
 
         {/* Floating Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/4 w-72 h-72 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 md:w-64 md:h-64 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/4 w-36 h-36 md:w-72 md:h-72 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left">
-              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style={{ paddingTop: '70px' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="text-center lg:text-left order-2 lg:order-1">
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 lg:mb-6 leading-tight">
                 Hola, soy{' '}
                 <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
                   Luli
                 </span>
               </h1>
-              <p className="text-xl lg:text-2xl text-teal-200 mb-6">
+              <p className="text-lg sm:text-xl lg:text-2xl text-teal-200 mb-4 lg:mb-6">
                 Front-end Developer • React JS • JavaScript • AI
               </p>
-              <p className="text-lg text-teal-100 mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg text-teal-100 mb-6 lg:mb-8 max-w-2xl mx-auto lg:mx-0">
                 Desarrolladora front-end especializada en React JS con experiencia laboral en Contabilium.
                 Me apasiona crear interfaces modernas, reutilizables y responsivas que brinden
                 experiencias excepcionales a los usuarios.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="bg-gradient-to-r from-cyan-500 to-teal-600 hover:from-cyan-600 hover:to-teal-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2"
+                  className="bg-gradient-to-r from-cyan-500 to-teal-600 hover:from-cyan-600 hover:to-teal-700 text-white px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2"
                 >
-                  <Mail size={20} />
+                  <Mail size={18} className="sm:w-5 sm:h-5" />
                   Contactar
                 </button>
                 <button
                   onClick={() => scrollToSection('projects')}
-                  className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-3 rounded-full font-semibold transition-all duration-200 hover:bg-white/20 flex items-center justify-center gap-2"
+                  className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-200 hover:bg-white/20 flex items-center justify-center gap-2"
                 >
-                  <Code size={20} />
+                  <Code size={18} className="sm:w-5 sm:h-5" />
                   Ver Proyectos
                 </button>
               </div>
             </div>
-            <div className="flex justify-center lg:justify-end">
-              <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 transform hover:scale-105 transition-all duration-300">
+            <div className="flex justify-center lg:justify-end order-1 lg:order-2 mb-8 lg:mb-0">
+              <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-4 sm:p-6 lg:p-8 border border-white/20 transform hover:scale-105 transition-all duration-300">
                 <div className="text-center">
-                  <div className="w-32 h-32 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                    {/* <User size={48} className="text-white" /> */}
-                    <img src={profileImage} alt="profile image" className="w-32 h-32 rounded-full" />
+                  <div className="w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-full mx-auto mb-3 sm:mb-4 lg:mb-6 flex items-center justify-center" style={{ width: '300px', height: '300px' }}>
+                    <img src={profileImage} alt="profile image" className="w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full object-cover" style={{ width: '300px', height: '300px' }} />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Lucía Paula Denise Caranfa</h3>
-                  <p className="text-teal-200 mb-4">Web Responsive Developer</p>
-                  <div className="flex items-center justify-center gap-2 text-teal-200">
-                    <MapPin size={16} />
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1 sm:mb-2">Lucía Paula Denise Caranfa</h3>
+                  <p className="text-sm sm:text-base lg:text-lg text-teal-200 mb-2 sm:mb-3 lg:mb-4">Web Responsive Developer</p>
+                  <div className="flex items-center justify-center gap-1 sm:gap-2 text-teal-200 text-sm sm:text-base lg:text-lg">
+                    <MapPin size={12} className="sm:w-3 sm:h-3 lg:w-4 lg:h-4" />
                     <span>CABA, Buenos Aires, Argentina</span>
                   </div>
                 </div>
@@ -180,45 +248,45 @@ const LandingPage = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-black/20">
+      <section id="about" className="py-16 sm:py-20 bg-black/20" style={{ paddingTop: '70px' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Sobre mí</h2>
-            <p className="text-xl text-teal-200 max-w-3xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">Sobre mí</h2>
+            <p className="text-lg sm:text-xl text-teal-200 max-w-3xl mx-auto">
               Soy una desarrolladora apasionada por la tecnología y el aprendizaje continuo.
               Me considero expeditiva, versátil, enérgica y capaz de aprender de forma rápida y efectiva.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="space-y-6">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-                <h3 className="text-2xl font-bold text-white mb-4">Habilidades Blandas</h3>
-                <p className="text-teal-200">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 sm:mb-16" style={{ paddingTop: '50px', paddingBottom: '80px' }}>
+            <div className="space-y-8 order-2 lg:order-1">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-6 border border-white/20 mb-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Habilidades Blandas</h3>
+                <p className="text-base sm:text-lg text-teal-200">
                   Me destaco por mi trato interpersonal, lo que facilita el trabajo en equipo y la toma de liderazgo.
                   Soy detallista, atenta, organizada y extrovertida. Me motiva crecer personal y profesionalmente.
                 </p>
               </div>
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-                <h3 className="text-2xl font-bold text-white mb-4">Objetivos</h3>
-                <p className="text-teal-200">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-6 border border-white/20">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Objetivos</h3>
+                <p className="text-base sm:text-lg text-teal-200">
                   Estoy centrada en seguir explorando mi carrera como desarrolladora, profundizar mis conocimientos en React,
                   apuntando a próximos pasos en React Native, y la implementación de IA en mis proyectos.
                   Aspiro a perfeccionar la optimización y eficiencia del código para brindar productos de mayor calidad.
                 </p>
               </div>
             </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-8">Habilidades Técnicas</h3>
-              <div className="space-y-4">
+            <div className="order-1 lg:order-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 sm:mb-8">Habilidades Técnicas</h3>
+              <div className="space-y-4 sm:space-y-5">
                 {skills.map((skill, index) => (
-                  <div key={index} className="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+                  <div key={index} className="bg-white/10 backdrop-blur-lg rounded-xl p-3 sm:p-4 border border-white/20 mb-4">
                     <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{skill.icon}</span>
-                        <span className="text-white font-semibold">{skill.name}</span>
+                      <div className="flex items-center gap-2 sm:gap-3">
+                        <span className="text-xl sm:text-2xl">{skill.icon}</span>
+                        <span className="text-sm sm:text-base text-white font-semibold">{skill.name}</span>
                       </div>
-                      <span className="text-teal-300">{skill.level}%</span>
+                      <span className="text-sm sm:text-base text-teal-300">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-white/20 rounded-full h-2">
                       <div
