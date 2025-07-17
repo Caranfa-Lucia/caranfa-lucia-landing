@@ -1405,4 +1405,7 @@ video {
     font-size: 4.5rem;
     line-height: 1;
   }
+
+  .lg\:hidden { display: none; }
+  .lg\:flex { display: flex; }
 }
