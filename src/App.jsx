@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, Linkedin, Github, ExternalLink, Code, User, MapPin, Calendar, Award, Briefcase, GraduationCap, Laptop, Globe, Menu, X } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, ExternalLink, Code, MapPin, Calendar, Award, Briefcase, GraduationCap, Laptop, Globe, Menu, X } from 'lucide-react';
 import profileImage from './assets/caranfa-lucia.jpeg';
 
 const LandingPage = () => {
@@ -10,17 +10,13 @@ const LandingPage = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      // Cerrar menú móvil al hacer scroll
       if (isMobileMenuOpen) {
-        console.log('Cerrando menú por scroll');
         setIsMobileMenuOpen(false);
       }
     };
 
     const handleClickOutside = (event) => {
-      // Solo cerrar si el menú está abierto y el clic no fue dentro del nav
       if (isMobileMenuOpen && !event.target.closest('nav')) {
-        console.log('Cerrando menú por clic fuera');
         setIsMobileMenuOpen(false);
       }
     };
@@ -34,17 +30,12 @@ const LandingPage = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Debug: Monitorear cambios en isMobileMenuOpen
-  useEffect(() => {
-    console.log('isMobileMenuOpen cambió a:', isMobileMenuOpen);
-  }, [isMobileMenuOpen]);
-
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(sectionId);
-      setIsMobileMenuOpen(false); // Cerrar menú móvil al hacer clic
+      setIsMobileMenuOpen(false); 
     }
   };
 
@@ -55,7 +46,7 @@ const LandingPage = () => {
     { name: 'Styled Components', icon: '💅', level: 85 },
     { name: 'Material-UI', icon: '🎯', level: 85 },
     { name: 'Git', icon: '🔧', level: 80 },
-    { name: 'Figma', icon: '🎨', level: 70 },
+    { name: 'Figma', icon: '🎨', level: 60 },
     { name: 'SCRUM', icon: '🔄', level: 80 }
   ];
 
@@ -144,7 +135,6 @@ const LandingPage = () => {
               onClick={(e) => {
                 e.stopPropagation();
                 const newValue = !isMobileMenuOpen;
-                console.log('Estado anterior:', isMobileMenuOpen, 'Nuevo estado:', newValue);
                 setIsMobileMenuOpen(newValue);
               }}
               className="lg:hidden p-2 rounded-lg  text-white transition-all duration-200"
