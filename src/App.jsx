@@ -35,19 +35,19 @@ const LandingPage = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(sectionId);
-      setIsMobileMenuOpen(false); 
+      setIsMobileMenuOpen(false);
     }
   };
 
   const skills = [
-    { name: 'React.js', icon: '⚛️', level: 85 },
-    { name: 'JavaScript', icon: '🟨', level: 80 },
-    { name: 'HTML/CSS', icon: '🎨', level: 90 },
-    { name: 'Styled Components', icon: '💅', level: 85 },
-    { name: 'Material-UI', icon: '🎯', level: 85 },
-    { name: 'Git', icon: '🔧', level: 80 },
-    { name: 'Figma', icon: '🎨', level: 60 },
-    { name: 'SCRUM', icon: '🔄', level: 80 }
+    { name: 'React.js', icon: '⚛️' },
+    { name: 'JavaScript', icon: '🟨' },
+    { name: 'HTML/CSS', icon: '🎨' },
+    { name: 'Styled Components', icon: '💅' },
+    { name: 'Material-UI', icon: '🎯' },
+    { name: 'Git', icon: '🔧' },
+    { name: 'Figma', icon: '🎨' },
+    { name: 'SCRUM', icon: '🔄' }
   ];
 
   const experiences = [
@@ -124,8 +124,8 @@ const LandingPage = () => {
                       section === 'experience' ? 'Experiencia' :
                         section === 'highlights' ? 'Destacados' :
                           section === 'education' ? 'Educación' :
-                          section === 'certifications' ? 'Certificaciones' :
-                            section === 'projects' ? 'Proyectos' : 'Contacto'}
+                            section === 'certifications' ? 'Certificaciones' :
+                              section === 'projects' ? 'Proyectos' : 'Contacto'}
                 </button>
               ))}
             </div>
@@ -268,21 +268,14 @@ const LandingPage = () => {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 sm:mb-8">Habilidades Técnicas</h3>
-              <div className="space-y-4 sm:space-y-5">
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
                 {skills.map((skill, index) => (
-                  <div key={index} className="bg-white/10 backdrop-blur-lg rounded-xl p-3 sm:p-4 border border-white/20 mb-4">
-                    <div className="flex items-center justify-between mb-2">
+                  <div key={index} className="bg-white/10 backdrop-blur-lg rounded-xl p-3 sm:p-4 border border-white/20">
+                    <div className="flex items-center justify-center mb-2">
                       <div className="flex items-center gap-2 sm:gap-3">
-                        <span className="text-xl sm:text-2xl">{skill.icon}</span>
-                        <span className="text-sm sm:text-base text-white font-semibold">{skill.name}</span>
+                        <span className="text-2xl sm:text-3xl">{skill.icon}</span>
+                        <span className="text-base sm:text-lg text-white font-semibold">{skill.name}</span>
                       </div>
-                      <span className="text-sm sm:text-base text-teal-300">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-white/20 rounded-full h-2">
-                      <div
-                        className="bg-gradient-to-r from-cyan-400 to-teal-400 h-2 rounded-full transition-all duration-1000"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
                     </div>
                   </div>
                 ))}
