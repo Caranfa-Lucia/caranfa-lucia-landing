@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, Linkedin, Github, ExternalLink, Code, MapPin, Calendar, Award, Briefcase, GraduationCap, Laptop, Globe, Menu, X } from 'lucide-react';
 import profileImage from './assets/caranfa-lucia.jpeg';
+import reactIcon from './assets/react-icon.png';
+import jsIcon from './assets/javascript-icon.png';
+import htmlcssIcon from './assets/css-html-icon.png';
+import styledIcon from './assets/styled-components-icon.png';
+import githubIcon from './assets/github-icon.png';
+import figmaIcon from './assets/figma-icon.png';
+import jiraIcon from './assets/jira-icon.png';
+import muiIcon from './assets/material-ui-icon.png';
+import bootstrapIcon from './assets/bootstrap-icon.png';
+import tailwindIcon from './assets/tailwind-icon.png';
+import scrumIcon from './assets/scrum-icon.png';
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,14 +51,17 @@ const LandingPage = () => {
   };
 
   const skills = [
-    { name: 'React.js', icon: '⚛️' },
-    { name: 'JavaScript', icon: '🟨' },
-    { name: 'HTML/CSS', icon: '🎨' },
-    { name: 'Styled Components', icon: '💅' },
-    { name: 'Material-UI', icon: '🎯' },
-    { name: 'Git', icon: '🔧' },
-    { name: 'Figma', icon: '🎨' },
-    { name: 'SCRUM', icon: '🔄' }
+    { name: 'React.js', icon: reactIcon },
+    { name: 'JavaScript', icon: jsIcon },
+    { name: 'HTML/CSS', icon: htmlcssIcon, wide: true },
+    { name: 'Styled Components', icon: styledIcon },
+    { name: 'GitHub', icon: githubIcon },
+    { name: 'Figma', icon: figmaIcon },
+    { name: 'Jira', icon: jiraIcon },
+    { name: 'Material-UI', icon: muiIcon },
+    { name: 'Bootstrap', icon: bootstrapIcon, wide: true },
+    { name: 'Tailwind CSS', icon: tailwindIcon, wide: true },
+    { name: 'SCRUM', icon: scrumIcon }
   ];
 
   const experiences = [
@@ -272,8 +286,18 @@ const LandingPage = () => {
                 {skills.map((skill, index) => (
                   <div key={index} className="bg-white/10 backdrop-blur-lg rounded-xl p-3 sm:p-4 border border-white/20">
                     <div className="flex items-center justify-center mb-2">
-                      <div className="flex items-center gap-2 sm:gap-3">
-                        <span className="text-2xl sm:text-3xl">{skill.icon}</span>
+                      <div className="flex items-center gap-4 sm:gap-5">
+                        <span className="flex items-center justify-center">
+                          <img
+                            src={skill.icon}
+                            alt={skill.name + ' icon'}
+                            className={
+                              skill.wide
+                                ? "w-16 h-12 sm:w-20 sm:h-16"
+                                : "w-12 h-12 sm:w-16 sm:h-16"
+                            }
+                          />
+                        </span>
                         <span className="text-base sm:text-lg text-white font-semibold">{skill.name}</span>
                       </div>
                     </div>
