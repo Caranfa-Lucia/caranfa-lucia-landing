@@ -121,7 +121,7 @@ const LandingPage = () => {
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden lg:flex space-x-8">
               {['home', 'about', 'experience', 'highlights', 'education', 'certifications', 'projects', 'contact'].map((section) => (
                 <button
                   key={section}
@@ -147,7 +147,7 @@ const LandingPage = () => {
                 console.log('Estado anterior:', isMobileMenuOpen, 'Nuevo estado:', newValue);
                 setIsMobileMenuOpen(newValue);
               }}
-              className="md:hidden p-2 rounded-lg  text-white transition-all duration-200"
+              className="lg:hidden p-2 rounded-lg  text-white transition-all duration-200"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -155,7 +155,7 @@ const LandingPage = () => {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden right-0 top-full z-50 backdrop-blur-lg rounded-2xl mt-4 p-4 shadow-2xl w-100" style={{ marginBottom: '10px' }}>
+            <div className="lg:hidden right-0 top-full z-50 backdrop-blur-lg rounded-2xl mt-4 p-4 shadow-2xl w-100" style={{ marginBottom: '10px' }}>
               <div className="flex flex-col space-y-2">
                 {['home', 'about', 'experience', 'highlights', 'education', 'certifications', 'projects', 'contact'].map((section) => (
                   <button
