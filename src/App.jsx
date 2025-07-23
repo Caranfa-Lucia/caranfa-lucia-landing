@@ -12,6 +12,12 @@ import muiIcon from './assets/material-ui-icon.png';
 import bootstrapIcon from './assets/bootstrap-icon.png';
 import tailwindIcon from './assets/tailwind-icon.png';
 import scrumIcon from './assets/scrum-icon.png';
+import postmanIcon from './assets/postman-icon.png';
+import geminiIcon from './assets/gemini-icon.png';
+import claudeIcon from './assets/claude-icon.png';
+import chatgptIcon from './assets/chatgpt-icon.png';
+import cursorIcon from './assets/cursor-icon.png';
+import vscodeIcon from './assets/VSC-icon.png';
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,7 +67,13 @@ const LandingPage = () => {
     { name: 'Material-UI', icon: muiIcon },
     { name: 'Bootstrap', icon: bootstrapIcon, wide: true },
     { name: 'Tailwind CSS', icon: tailwindIcon, wide: true },
-    { name: 'SCRUM', icon: scrumIcon }
+    { name: 'SCRUM', icon: scrumIcon },
+    { name: 'Postman', icon: postmanIcon },
+    { name: 'Gemini IA', icon: geminiIcon },
+    { name: 'Claude IA', icon: claudeIcon },
+    { name: 'ChatGPT', icon: chatgptIcon },
+    { name: 'Cursor', icon: cursorIcon },
+    { name: 'VS Code', icon: vscodeIcon },
   ];
 
   const experiences = [
