@@ -71,7 +71,7 @@ const LandingPage = () => {
     { name: 'Postman', icon: postmanIcon },
     { name: 'Gemini IA', icon: geminiIcon },
     { name: 'Claude IA', icon: claudeIcon },
-    { name: 'ChatGPT', icon: chatgptIcon },
+    { name: 'ChatGPT IA', icon: chatgptIcon },
     { name: 'Cursor', icon: cursorIcon },
     { name: 'VS Code', icon: vscodeIcon },
   ];
