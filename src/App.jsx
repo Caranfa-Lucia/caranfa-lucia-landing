@@ -62,6 +62,7 @@ const LandingPage = () => {
     { name: 'HTML/CSS', icon: htmlcssIcon, wide: true },
     { name: 'Styled Components', icon: styledIcon },
     { name: 'GitHub', icon: githubIcon },
+    { name: 'Git', icon: gitIcon },
     { name: 'Figma', icon: figmaIcon },
     { name: 'Jira', icon: jiraIcon },
     { name: 'Material-UI', icon: muiIcon },
