@@ -54,25 +54,22 @@ El enfoque estuvo puesto en lograr un diseño limpio, responsive y fácil de nav
 
 ---
 
-🧪 Cómo clonar y correr el proyecto localmente
-Clonar el repositorio
+🧪 Cómo clonar y correr el proyecto localmente    
 
+1.Clonar el repositorio
 ```bash
 git clone https://github.com/Caranfa-Lucia/caranfa-lucia-landing.git
 cd caranfa-lucia-landing
 ```
-
-Instalar dependencias
+2.Instalar dependencias
 ```bash
 npm install
 ```
-
-Levantar servidor local
+3.Levantar servidor local
 ```bash
 npm run dev
 ```
-
-Accedé a http://localhost:5173 para ver el sitio en acción.
+4.Accedé a http://localhost:5173 para ver el sitio en acción.
 
 ---
 
