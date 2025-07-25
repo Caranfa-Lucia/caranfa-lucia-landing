@@ -18,6 +18,7 @@ import claudeIcon from './assets/claude-icon.png';
 import chatgptIcon from './assets/chatgpt-icon.png';
 import cursorIcon from './assets/cursor-icon.png';
 import vscodeIcon from './assets/VSC-icon.png';
+import gitIcon from './assets/git-icon.png';
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
