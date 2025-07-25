@@ -54,7 +54,7 @@ El enfoque estuvo puesto en lograr un diseño limpio, responsive y fácil de nav
 
 ---
 
-🧪 Cómo clonar y correr el proyecto localmente    
+## 🧪 Cómo clonar y correr el proyecto localmente    
 
 1.Clonar el repositorio
 ```bash
@@ -73,7 +73,7 @@ npm run dev
 
 ---
 
-📌 Notas adicionales
+## 📌 Notas adicionales
 El sitio está completamente adaptado a dispositivos móviles (responsive).
 
 Utiliza Tailwind CSS como base de diseño, con estilos claros y consistentes.
@@ -84,7 +84,7 @@ El contenido es completamente editable y escalable para agregar nuevas secciones
 
 ---
 
-🙋‍♀️ Autor
+## 🙋‍♀️ Autor
 Desarrollado por [Lucía Caranfa](https://www.linkedin.com/in/lucia-caranfa/)  
 Landing page profesional desarrollada con React para centralizar mi perfil, stack y proyectos.
 
