@@ -1,12 +1,93 @@
-# React + Vite
+# 🌐 Landing Page Profesional - Portfolio Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este repositorio contiene el código fuente de mi landing page personal, desarrollada como presentación profesional para destacar mis conocimientos, proyectos, aptitudes y logros. Fue construida con **React JS** y **Tailwind CSS**, y desplegada en **Vercel**.
 
-Currently, two official plugins are available:
+El enfoque estuvo puesto en lograr un diseño limpio, responsive y fácil de navegar, priorizando la experiencia de usuario (UX) y una estructura clara de contenidos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Demo
 
-## Expanding the ESLint configuration
+🔗 [Ver sitio en vivo](https://caranfa-lucia-landing.vercel.app/)  
+📦 [Repositorio en GitHub](https://github.com/Caranfa-Lucia/caranfa-lucia-landing)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 💡 Objetivos del proyecto
+
+- Centralizar mi identidad profesional en un solo espacio web.
+- Mostrar mi stack tecnológico y proyectos desarrollados.
+- Facilitar el acceso a mi currículum, logros y vías de contacto.
+- Brindar una experiencia visual clara y moderna, alineada a buenas prácticas de diseño web.
+
+---
+
+## 🧩 Secciones destacadas
+
+- **Sobre mí:** presentación profesional, perfil y valores personales.
+- **Stack técnico:** tecnologías que domino.
+- **Proyectos destacados:** con links a repositorios o sitios.
+- **CV interactivo:** diseño similar al currículum tradicional pero optimizado para web.
+- **Contacto:** acceso directo a redes y correo.
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- ⚛️ **React JS**
+- 💨 **Tailwind CSS** para estilos rápidos y responsive
+- 🧑‍🎨 **Styled-components** para algunos estilos reutilizables
+- ☁️ **Vercel** para despliegue continuo
+
+---
+
+## 📂 Estructura del proyecto
+
+```plaintext
+📦 caranfa-lucia-landing
+├── 📁 components       # Secciones reutilizables (Navbar, Footer, Cards, etc.)
+├── 📁 pages            # Vistas principales del sitio (Home, CV, Contacto)
+├── 📁 assets           # Imágenes y recursos gráficos
+├── 📁 styles           # Estilos personalizados y overrides
+├── 📁 data             # Contenidos estáticos (proyectos, skills, etc.)
+└── App.jsx             # Punto de entrada y ruteo
+
+```
+
+---
+
+🧪 Cómo clonar y correr el proyecto localmente
+Clonar el repositorio
+
+```bash
+git clone https://github.com/Caranfa-Lucia/caranfa-lucia-landing.git
+cd caranfa-lucia-landing
+```
+
+Instalar dependencias
+```bash
+npm install
+```
+
+Levantar servidor local
+```bash
+npm run dev
+```
+
+Accedé a http://localhost:5173 para ver el sitio en acción.
+
+---
+
+📌 Notas adicionales
+El sitio está completamente adaptado a dispositivos móviles (responsive).
+
+Utiliza Tailwind CSS como base de diseño, con estilos claros y consistentes.
+
+Fue pensado como CV digital y carta de presentación online para oportunidades laborales o colaboraciones profesionales.
+
+El contenido es completamente editable y escalable para agregar nuevas secciones o integrar funcionalidades como blogs o formularios externos.
+
+---
+
+🙋‍♀️ Autor
+Desarrollado por [Lucía Caranfa](https://www.linkedin.com/in/lucia-caranfa/)  
+Landing page profesional desarrollada con React para centralizar mi perfil, stack y proyectos.
+
